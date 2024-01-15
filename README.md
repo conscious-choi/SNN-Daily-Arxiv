@@ -613,6 +613,11 @@
 |**2022-04-12**|**Rate Coding or Direct Coding: Which One is Better for Accurate, Robust, and Energy-efficient Spiking Neural Networks?**|Youngeun Kim et.al.|[2202.03133v2](http://arxiv.org/abs/2202.03133v2)|**[link](https://github.com/intelligent-computing-lab-yale/rate-vs-direct)**|
 |**2022-04-10**|**Energy-Efficient High-Accuracy Spiking Neural Network Inference Using Time-Domain Neurons**|Joonghyun Song et.al.|[2202.02015v2](http://arxiv.org/abs/2202.02015v2)|null|
 |**2022-02-03**|**Optimized Potential Initialization for Low-latency Spiking Neural Networks**|Tong Bu et.al.|[2202.01440v1](http://arxiv.org/abs/2202.01440v1)|null|
+### NeurIPS
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+|**2024-01-08**|**Enhancing Adaptive History Reserving by Spiking Convolutional Block Attention Module in Recurrent Neural Networks**|Qi Xu et.al.|[2401.03719v1](http://arxiv.org/abs/2401.03719v1)|null|**neurips-2023-11**
+|**2023-12-01**|**Trial matching: capturing variability with data-constrained spiking neural networks**|Christos Sourmpis et.al.|[2306.03603v2](http://arxiv.org/abs/2306.03603v2)|**[link](https://github.com/epfl-lcn/pub-sourmpis2023-neurips)**|
 
 <p align=right>(<a href=#Updated-on-20240115>back to top</a>)</p>
 

@@ -245,8 +245,34 @@ def json_to_md(filename,md_filename,
 
             # sort papers by date
             day_content = sort_papers(day_content)
+
+            """
+            Edited by S.Choi
+            """
+            nips = []
         
             for _,v in day_content.items():
+                if v is not None:
+                    f.write(v)
+                """
+                Edited by S.Choi
+                """
+                if "neurips" in v:
+                    nips.append(v)
+
+            if use_title == True :
+                if to_web == False: # default false
+                    # f.write("|Publish Date|Title|Authors|PDF|Code|\n" + "|---|---|---|---|---|\n")
+                    """
+                    Edited By S.Choi
+                    """
+                    f.write("### NeurIPS\n")
+                    f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
+                else:
+                    f.write("| Publish Date | Title | Authors | PDF | Code |\n")
+                    f.write("|:---------|:-----------------------|:---------|:------|:------|\n")
+
+            for v in nips:
                 if v is not None:
                     f.write(v)
 
