@@ -34,16 +34,27 @@ def get_daily_papers(topic,query="SNN", max_results=2):
 
     # content
     output = dict()
+
+    # Edited by S.Choi
+    # https://lukasschwab.me/arxiv.py/arxiv.html
     
-    search_engine = arxiv.Search(
+    # search_engine = arxiv.Search(
+    #     query = query,
+    #     max_results = max_results,
+    #     sort_by = arxiv.SortCriterion.SubmittedDate
+    # )
+    client = arxiv.Client()
+    search = arxiv.Search(
         query = query,
         max_results = max_results,
         sort_by = arxiv.SortCriterion.SubmittedDate
     )
+    results = client.results(search)
 
     cnt = 0
 
-    for result in search_engine.results():
+    # for result in search_engine.results():
+    for result in results:
 
         paper_id            = result.get_short_id()
         paper_title         = result.title
@@ -56,6 +67,16 @@ def get_daily_papers(topic,query="SNN", max_results=2):
         publish_time        = result.published.date()
         update_time         = result.updated.date()
         comments            = result.comment
+        
+        # import pdb; pdb.set_trace();
+        """
+        (Pdb) result.__dict__.keys()
+        dict_keys(['entry_id', 'updated', 'published', 'title', 'authors', 'summary', 'comment', 'journal_ref', 'doi', 'primary_category', 'categories', 'links', 'pdf_url', '_raw'])
+        (Pdb) result
+        arxiv.Result(entry_id='http://arxiv.org/abs/2401.06563v1', updated=datetime.datetime(2024, 1, 12, 13, 20, 1, tzinfo=datetime.timezone.utc), published=datetime.datetime(2024, 1, 12, 13, 20, 1, tzinfo=datetime.timezone.utc), title='Resource-Efficient Gesture Recognition using Low-Resolution Thermal Camera via Spiking Neural Networks and Sparse Segmentation', authors=[arxiv.Result.Author('Ali Safa'), arxiv.Result.Author('Wout Mommen'), arxiv.Result.Author('Lars Keuninckx')], summary='This work proposes a novel approach for hand gesture recognition using an\ninexpensive, low-resolution (24 x 32) thermal sensor processed by a Spiking\nNeural Network (SNN) followed by Sparse Segmentation and feature-based gesture\nclassification via Robust Principal Component Analysis (R-PCA). Compared to the\nuse of standard RGB cameras, the proposed system is insensitive to lighting\nvariations while being significantly less expensive compared to high-frequency\nradars, time-of-flight cameras and high-resolution thermal sensors previously\nused in literature. Crucially, this paper shows that the innovative use of the\nrecently proposed Monostable Multivibrator (MMV) neural networks as a new class\nof SNN achieves more than one order of magnitude smaller memory and compute\ncomplexity compared to deep learning approaches, while reaching a top gesture\nrecognition accuracy of 93.9% using a 5-class thermal camera dataset acquired\nin a car cabin, within an automotive context. Our dataset is released for\nhelping future research.', comment=None, journal_ref=None, doi=None, primary_category='cs.CV', categories=['cs.CV', 'cs.HC'], links=[arxiv.Result.Link('http://arxiv.org/abs/2401.06563v1', title=None, rel='alternate', content_type=None), arxiv.Result.Link('http://arxiv.org/pdf/2401.06563v1', title='pdf', rel='related', content_type=None)])
+        (Pdb) result.entry_id
+        'http://arxiv.org/abs/2401.06563v1'
+        """
 
 
       
@@ -232,7 +253,7 @@ if __name__ == "__main__":
         # topic = keyword.replace("\"","")
         print("Keyword: " + topic)
 
-        data,data_web = get_daily_papers(topic, query = keyword, max_results = 500)
+        data,data_web = get_daily_papers(topic, query = keyword, max_results = 1)
         data_collector.append(data)
         data_collector_web.append(data_web)
 
@@ -244,4 +265,11 @@ if __name__ == "__main__":
     # update json data
     update_json_file(json_file,data_collector)
     # json data to markdown
-    json_to_md(json_file,md_file)
+    json_to_md(
+        json_file,
+        md_file,
+        to_web = True, 
+        use_title = True, 
+        use_tc = True,
+        show_badge = True
+    )

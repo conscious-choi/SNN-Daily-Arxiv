@@ -1,6 +1,13 @@
-## Updated on 2024.01.15
+---
+layout: default
+---
 
-The original source code is from https://github.com/SpikingChen/SNN-Daily-Arxiv
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
+## Updated on 2024.01.15
 
 <details>
   <summary>Table of Contents</summary>
@@ -11,8 +18,8 @@ The original source code is from https://github.com/SpikingChen/SNN-Daily-Arxiv
 
 ## Spiking Neural Network
 
-|Publish Date|Title|Authors|PDF|Code|
-|---|---|---|---|---|
+| Publish Date | Title | Authors | PDF | Code |
+|:---------|:-----------------------|:---------|:------|:------|
 |**2024-01-12**|**Resource-Efficient Gesture Recognition using Low-Resolution Thermal Camera via Spiking Neural Networks and Sparse Segmentation**|Ali Safa et.al.|[2401.06563v1](http://arxiv.org/abs/2401.06563v1)|null|
 |**2024-01-12**|**A Brain-inspired Computational Model for Human-like Concept Learning**|Yuwei Wang et.al.|[2401.06471v1](http://arxiv.org/abs/2401.06471v1)|null|
 |**2024-01-09**|**Fully Spiking Actor Network with Intra-layer Connections for Reinforcement Learning**|Ding Chen et.al.|[2401.05444v1](http://arxiv.org/abs/2401.05444v1)|null|
@@ -617,4 +624,13 @@ The original source code is from https://github.com/SpikingChen/SNN-Daily-Arxiv
 |**2022-02-03**|**Optimized Potential Initialization for Low-latency Spiking Neural Networks**|Tong Bu et.al.|[2202.01440v1](http://arxiv.org/abs/2202.01440v1)|null|
 
 <p align=right>(<a href=#Updated-on-20240115>back to top</a>)</p>
+
+[contributors-shield]: https://img.shields.io/github/contributors/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge
+[contributors-url]: https://github.com/SpikingChen/snn-arxiv-daily/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge
+[forks-url]: https://github.com/SpikingChen/snn-arxiv-daily/network/members
+[stars-shield]: https://img.shields.io/github/stars/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge
+[stars-url]: https://github.com/SpikingChen/snn-arxiv-daily/stargazers
+[issues-shield]: https://img.shields.io/github/issues/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge
+[issues-url]: https://github.com/SpikingChen/snn-arxiv-daily/issues
 
