@@ -285,8 +285,8 @@ if __name__ == "__main__":
         print("Keyword: " + topic)
 
         data,data_web = get_daily_papers(topic, query = keyword, max_results = 10)
-        # data_collector.append(data)
-        # data_collector_web.append(data_web)
+        data_collector.append(data)
+        data_collector_web.append(data_web)
 
         print("\n")
 
@@ -294,8 +294,8 @@ if __name__ == "__main__":
     json_file = "snn-arxiv-daily.json"
     md_file   = "README.md"
     # update json data
-    # update_json_file(json_file,data_collector)
+    update_json_file(json_file,data_collector)
     # json data to markdown
-    # json_to_md(json_file,md_file)
+    json_to_md(json_file,md_file)
 
     # later do it with data_web?

@@ -1,12 +1,3 @@
----
-layout: default
----
-
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-
 ## Updated on 2024.01.15
 
 <details>
@@ -18,8 +9,8 @@ layout: default
 
 ## Spiking Neural Network
 
-| Publish Date | Title | Authors | PDF | Code |
-|:---------|:-----------------------|:---------|:------|:------|
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
 |**2024-01-12**|**Resource-Efficient Gesture Recognition using Low-Resolution Thermal Camera via Spiking Neural Networks and Sparse Segmentation**|Ali Safa et.al.|[2401.06563v1](http://arxiv.org/abs/2401.06563v1)|null|
 |**2024-01-12**|**A Brain-inspired Computational Model for Human-like Concept Learning**|Yuwei Wang et.al.|[2401.06471v1](http://arxiv.org/abs/2401.06471v1)|null|
 |**2024-01-09**|**Fully Spiking Actor Network with Intra-layer Connections for Reinforcement Learning**|Ding Chen et.al.|[2401.05444v1](http://arxiv.org/abs/2401.05444v1)|null|
@@ -28,7 +19,7 @@ layout: default
 |**2024-01-09**|**SpiNNaker2: A Large-Scale Neuromorphic System for Event-Based and Asynchronous Machine Learning**|Hector A. Gonzalez et.al.|[2401.04491v1](http://arxiv.org/abs/2401.04491v1)|null|
 |**2024-01-09**|**Take A Shortcut Back: Mitigating the Gradient Vanishing for Training Spiking Neural Networks**|Yufei Guo et.al.|[2401.04486v1](http://arxiv.org/abs/2401.04486v1)|null|
 |**2024-01-07**|**Web Neural Network with Complete DiGraphs**|Frank Li et.al.|[2401.04134v1](http://arxiv.org/abs/2401.04134v1)|null|
-|**2024-01-08**|**Enhancing Adaptive History Reserving by Spiking Convolutional Block Attention Module in Recurrent Neural Networks**|Qi Xu et.al.|[2401.03719v1](http://arxiv.org/abs/2401.03719v1)|null|
+|**2024-01-08**|**Enhancing Adaptive History Reserving by Spiking Convolutional Block Attention Module in Recurrent Neural Networks**|Qi Xu et.al.|[2401.03719v1](http://arxiv.org/abs/2401.03719v1)|null|**neurips-2023-11**
 |**2023-11-13**|**Brain-Inspired Spiking Neural Networks for Industrial Fault Diagnosis: A Survey, Challenges, and Opportunities**|Huan Wang et.al.|[2401.02429v1](http://arxiv.org/abs/2401.02429v1)|null|
 |**2024-01-04**|**Spikformer V2: Join the High Accuracy Club on ImageNet with an SNN Ticket**|Zhaokun Zhou et.al.|[2401.02020v1](http://arxiv.org/abs/2401.02020v1)|**[link](https://github.com/zk-zhou/spikformer)**|
 |**2024-01-02**|**Shrinking Your TimeStep: Towards Low-Latency Neuromorphic Object Recognition with Spiking Neural Network**|Yongqi Ding et.al.|[2401.01912v1](http://arxiv.org/abs/2401.01912v1)|null|
@@ -624,13 +615,4 @@ layout: default
 |**2022-02-03**|**Optimized Potential Initialization for Low-latency Spiking Neural Networks**|Tong Bu et.al.|[2202.01440v1](http://arxiv.org/abs/2202.01440v1)|null|
 
 <p align=right>(<a href=#Updated-on-20240115>back to top</a>)</p>
-
-[contributors-shield]: https://img.shields.io/github/contributors/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge
-[contributors-url]: https://github.com/SpikingChen/snn-arxiv-daily/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge
-[forks-url]: https://github.com/SpikingChen/snn-arxiv-daily/network/members
-[stars-shield]: https://img.shields.io/github/stars/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge
-[stars-url]: https://github.com/SpikingChen/snn-arxiv-daily/stargazers
-[issues-shield]: https://img.shields.io/github/issues/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge
-[issues-url]: https://github.com/SpikingChen/snn-arxiv-daily/issues
 
