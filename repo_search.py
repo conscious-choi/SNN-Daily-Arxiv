@@ -56,3 +56,16 @@ import pdb; pdb.set_trace();
 (Pdb) papers
 Papers(count=1, next_page=None, previous_page=None, results=[Paper(id='lottery-ticket-hypothesis-for-spiking-neural', arxiv_id='2207.01382', nips_id=None, url_abs='https://arxiv.org/abs/2207.01382v2', url_pdf='https://arxiv.org/pdf/2207.01382v2.pdf', title='Exploring Lottery Ticket Hypothesis in Spiking Neural Networks', abstract='Spiking Neural Networks (SNNs) have recently emerged as a new generation of low-power deep neural networks, which is suitable to be implemented on low-power mobile/edge devices. As such devices have limited memory storage, neural pruning on SNNs has been widely explored in recent years. Most existing SNN pruning works focus on shallow SNNs (2~6 layers), however, deeper SNNs (>16 layers) are proposed by state-of-the-art SNN works, which is difficult to be compatible with the current SNN pruning work. To scale up a pruning technique towards deep SNNs, we investigate Lottery Ticket Hypothesis (LTH) which states that dense networks contain smaller subnetworks (i.e., winning tickets) that achieve comparable performance to the dense networks. Our studies on LTH reveal that the winning tickets consistently exist in deep SNNs across various datasets and architectures, providing up to 97% sparsity without huge performance degradation. However, the iterative searching process of LTH brings a huge training computational cost when combined with the multiple timesteps of SNNs. To alleviate such heavy searching cost, we propose Early-Time (ET) ticket where we find the important weight connectivity from a smaller number of timesteps. The proposed ET ticket can be seamlessly combined with a common pruning techniques for finding winning tickets, such as Iterative Magnitude Pruning (IMP) and Early-Bird (EB) tickets. Our experiment results show that the proposed ET ticket reduces search time by up to 38% compared to IMP or EB methods. Code is available at Github.', authors=['Priyadarshini Panda', 'Ruokai Yin', 'Yeshwanth Venkatesha', 'Hyoungseob Park', 'Yuhang Li', 'Youngeun Kim'], published=datetime.date(2022, 7, 4), conference=None, conference_url_abs=None, conference_url_pdf=None, proceeding=None)])
 """
+
+client = PapersWithCodeClient()
+
+def proceeder(title):
+    paper = client.paper_list(title)
+    if paper.count != 0:
+        pwc = paper.results[0]
+        if pwc.proceeding != None:
+            return pwc.proceeding
+    else:
+        return None
+    
+    

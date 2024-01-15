@@ -3,6 +3,7 @@ import requests
 import json
 import arxiv
 import os
+from repo_search import proceeder
 
 base_url = "https://arxiv.paperswithcode.com/api/v0/papers/"
 
@@ -13,6 +14,7 @@ def get_authors(authors, first_author = False):
     else:
         output = authors[0]
     return output
+
 def sort_papers(papers):
     output = dict()
     keys = list(papers.keys())
@@ -67,6 +69,9 @@ def get_daily_papers(topic,query="SNN", max_results=2):
         publish_time        = result.published.date()
         update_time         = result.updated.date()
         comments            = result.comment
+
+        ## add by s.choi
+        proceeding = proceeder(paper_title)
         
         # import pdb; pdb.set_trace();
         """
@@ -94,22 +99,42 @@ def get_daily_papers(topic,query="SNN", max_results=2):
         try:
             r = requests.get(code_url).json()
             # source code link
+            # if "official" in r and r["official"]:
+            #     cnt += 1
+            #     repo_url = r["official"]["url"]
+            #     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|\n"
+            #     content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
+
+            # else:
+            #     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|\n"
+            #     content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url})"
+
+            """
+            Edited by S.Choi - We don't need content_to_web (not used) + Comments
+            """
             if "official" in r and r["official"]:
                 cnt += 1
                 repo_url = r["official"]["url"]
-                content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|\n"
-                content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
 
+                if proceeding != None:
+                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|**{proceeding}\n"
+                    # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
+                else:
+                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|\n"
+                    # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
             else:
-                content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|\n"
-                content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url})"
+                if proceeding != None:
+                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|**{proceeding}**\n"
+                else:
+                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|\n"
+                # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url})"
 
-            # TODO: select useful comments
-            comments = None
-            if comments != None:
-                content_to_web[paper_key] = content_to_web[paper_key] + f", {comments}\n"
-            else:
-                content_to_web[paper_key] = content_to_web[paper_key] + f"\n"
+            # # TODO: select useful comments
+            # comments = None
+            # if comments != None:
+            #     content_to_web[paper_key] = content_to_web[paper_key] + f", {comments}\n"
+            # else:
+            #     content_to_web[paper_key] = content_to_web[paper_key] + f"\n"
 
         except Exception as e:
             print(f"exception: {e} with id: {paper_key}")
@@ -170,6 +195,7 @@ def json_to_md(filename,md_filename,
     # write data into README.md
     with open(md_filename,"a+") as f:
 
+        ################ we don't have to care about this #################
         if (use_title == True) and (to_web == True):
             f.write("---\n" + "layout: default\n" + "---\n\n")
         
@@ -178,6 +204,7 @@ def json_to_md(filename,md_filename,
             f.write(f"[![Forks][forks-shield]][forks-url]\n")
             f.write(f"[![Stargazers][stars-shield]][stars-url]\n")
             f.write(f"[![Issues][issues-shield]][issues-url]\n\n")    
+        ################ we don't have to care about this #################
                 
         if use_title == True:
             f.write("## Updated on " + DateNow + "\n\n")
@@ -206,8 +233,12 @@ def json_to_md(filename,md_filename,
             f.write(f"## {keyword}\n\n")
 
             if use_title == True :
-                if to_web == False:
-                    f.write("|Publish Date|Title|Authors|PDF|Code|\n" + "|---|---|---|---|---|\n")
+                if to_web == False: # default false
+                    # f.write("|Publish Date|Title|Authors|PDF|Code|\n" + "|---|---|---|---|---|\n")
+                    """
+                    Edited By S.Choi
+                    """
+                    f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
                 else:
                     f.write("| Publish Date | Title | Authors | PDF | Code |\n")
                     f.write("|:---------|:-----------------------|:---------|:------|:------|\n")
@@ -253,9 +284,9 @@ if __name__ == "__main__":
         # topic = keyword.replace("\"","")
         print("Keyword: " + topic)
 
-        data,data_web = get_daily_papers(topic, query = keyword, max_results = 1)
-        data_collector.append(data)
-        data_collector_web.append(data_web)
+        data,data_web = get_daily_papers(topic, query = keyword, max_results = 10)
+        # data_collector.append(data)
+        # data_collector_web.append(data_web)
 
         print("\n")
 
@@ -263,13 +294,8 @@ if __name__ == "__main__":
     json_file = "snn-arxiv-daily.json"
     md_file   = "README.md"
     # update json data
-    update_json_file(json_file,data_collector)
+    # update_json_file(json_file,data_collector)
     # json data to markdown
-    json_to_md(
-        json_file,
-        md_file,
-        to_web = True, 
-        use_title = True, 
-        use_tc = True,
-        show_badge = True
-    )
+    # json_to_md(json_file,md_file)
+
+    # later do it with data_web?
