@@ -21,7 +21,16 @@ def sort_papers(papers):
     keys.sort(reverse=True)
     for key in keys:
         output[key] = papers[key]
-    return output    
+    return output
+
+def conference_name_changer(input):
+    conference = input.split("-")[0]
+    year = input.split("-")[1][-2:]
+
+    if conference == "neurips":
+        conference = "NeurIPS"
+    conference = conference + " " + year
+    return conference
 
 def get_daily_papers(topic,query="SNN", max_results=2):
     """
@@ -32,19 +41,10 @@ def get_daily_papers(topic,query="SNN", max_results=2):
 
     # output 
     content = dict() 
-    content_to_web = dict()
 
     # content
     output = dict()
 
-    # Edited by S.Choi
-    # https://lukasschwab.me/arxiv.py/arxiv.html
-    
-    # search_engine = arxiv.Search(
-    #     query = query,
-    #     max_results = max_results,
-    #     sort_by = arxiv.SortCriterion.SubmittedDate
-    # )
     client = arxiv.Client()
     search = arxiv.Search(
         query = query,
@@ -95,13 +95,13 @@ def get_daily_papers(topic,query="SNN", max_results=2):
                 repo_url = r["official"]["url"]
 
                 if proceeding != None:
+                    proceeding = conference_name_changer(proceeding)
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|**{proceeding}**|\n"
-                    # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
                 else:
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|null|\n"
-                    # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
             else:
                 if proceeding != None:
+                    proceeding = conference_name_changer(proceeding)
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|**{proceeding}**|\n"
                 else:
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|null|\n"
@@ -110,8 +110,7 @@ def get_daily_papers(topic,query="SNN", max_results=2):
             print(f"exception: {e} with id: {paper_key}")
 
     data = {topic:content}
-    data_web = {topic:content_to_web}
-    return data,data_web 
+    return data
 
 def update_json_file(filename,data_all):
     with open(filename,"r") as f:
@@ -178,32 +177,23 @@ def json_to_md(filename,md_filename,
             # the head of each part
             f.write(f"## {keyword}\n\n")
 
-           
-
             # sort papers by date
             day_content = sort_papers(day_content)
 
-            """
-            Edited by S.Choi
-            """
-
             proceedings_dict = {
-                "neurips": [],
-                "eccv": [],
-                "cvpr": [],
-                "iccv": [],
-                "iclr": [],
-                "aaai": [],
-                "icml": [],
-                "pmlr": [],
-                "ijcai": []
+                "NeurIPS": [],
+                "ECCV": [],
+                "CVPR": [],
+                "ICCV": [],
+                "ICLR": [],
+                "AAAI": [],
+                "ICML": [],
+                "PMLR": [],
+                "IJCAI": []
             }
         
             for _,v in day_content.items():
 
-                """
-                Edited by S.Choi
-                """
                 proceedings = v.split("|")[-2]
 
                 if proceedings != "null":
@@ -216,7 +206,8 @@ def json_to_md(filename,md_filename,
 
             for key, array in proceedings_dict.items():
                 
-                f.write(f"### {key.upper()}\n")
+                f.write(f"### {key}\n")
+                    
                 f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
                 for item in array:
                     f.write(item)
@@ -243,19 +234,17 @@ def json_to_md(filename,md_filename,
 if __name__ == "__main__":
 
     data_collector = []
-    data_collector_web= []
     
     keywords = dict()
-    keywords["Spiking Neural Network"]                 = "\"Spiking Neural Network\"OR\"Spiking Neural Networks\""
+    keywords["Spiking Neural Network"] = "\"Spiking Neural Network\"OR\"Spiking Neural Networks\""
 
     for topic,keyword in keywords.items():
  
         # topic = keyword.replace("\"","")
         print("Keyword: " + topic)
 
-        data,data_web = get_daily_papers(topic, query = keyword, max_results = 10)
+        data = get_daily_papers(topic, query = keyword, max_results = 100)
         data_collector.append(data)
-        data_collector_web.append(data_web)
 
         print("\n")
 
@@ -266,5 +255,3 @@ if __name__ == "__main__":
     update_json_file(json_file,data_collector)
     # json data to markdown
     json_to_md(json_file,md_file)
-
-    # later do it with data_web?
