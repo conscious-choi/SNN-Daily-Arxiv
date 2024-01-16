@@ -119,14 +119,12 @@ def get_daily_papers(topic,query="SNN", max_results=2):
                 if proceeding != None:
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|**{proceeding}\n"
                     # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
-                    import pdb; pdb.set_trace();
                 else:
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|\n"
                     # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
             else:
                 if proceeding != None:
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|**{proceeding}**\n"
-                    import pdb; pdb.set_trace();
                 else:
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|\n"
                 # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url})"
@@ -324,6 +322,6 @@ if __name__ == "__main__":
     # update json data
     update_json_file(json_file,data_collector)
     # json data to markdown
-    json_to_md(json_file,md_file)
+    json_to_md(json_file,md_file, to_web=True)
 
     # later do it with data_web?

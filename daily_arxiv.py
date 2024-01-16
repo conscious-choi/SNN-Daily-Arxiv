@@ -70,19 +70,7 @@ def get_daily_papers(topic,query="SNN", max_results=2):
         update_time         = result.updated.date()
         comments            = result.comment
 
-        ## add by s.choi
         proceeding = proceeder(paper_title)
-        
-        # import pdb; pdb.set_trace();
-        """
-        (Pdb) result.__dict__.keys()
-        dict_keys(['entry_id', 'updated', 'published', 'title', 'authors', 'summary', 'comment', 'journal_ref', 'doi', 'primary_category', 'categories', 'links', 'pdf_url', '_raw'])
-        (Pdb) result
-        arxiv.Result(entry_id='http://arxiv.org/abs/2401.06563v1', updated=datetime.datetime(2024, 1, 12, 13, 20, 1, tzinfo=datetime.timezone.utc), published=datetime.datetime(2024, 1, 12, 13, 20, 1, tzinfo=datetime.timezone.utc), title='Resource-Efficient Gesture Recognition using Low-Resolution Thermal Camera via Spiking Neural Networks and Sparse Segmentation', authors=[arxiv.Result.Author('Ali Safa'), arxiv.Result.Author('Wout Mommen'), arxiv.Result.Author('Lars Keuninckx')], summary='This work proposes a novel approach for hand gesture recognition using an\ninexpensive, low-resolution (24 x 32) thermal sensor processed by a Spiking\nNeural Network (SNN) followed by Sparse Segmentation and feature-based gesture\nclassification via Robust Principal Component Analysis (R-PCA). Compared to the\nuse of standard RGB cameras, the proposed system is insensitive to lighting\nvariations while being significantly less expensive compared to high-frequency\nradars, time-of-flight cameras and high-resolution thermal sensors previously\nused in literature. Crucially, this paper shows that the innovative use of the\nrecently proposed Monostable Multivibrator (MMV) neural networks as a new class\nof SNN achieves more than one order of magnitude smaller memory and compute\ncomplexity compared to deep learning approaches, while reaching a top gesture\nrecognition accuracy of 93.9% using a 5-class thermal camera dataset acquired\nin a car cabin, within an automotive context. Our dataset is released for\nhelping future research.', comment=None, journal_ref=None, doi=None, primary_category='cs.CV', categories=['cs.CV', 'cs.HC'], links=[arxiv.Result.Link('http://arxiv.org/abs/2401.06563v1', title=None, rel='alternate', content_type=None), arxiv.Result.Link('http://arxiv.org/pdf/2401.06563v1', title='pdf', rel='related', content_type=None)])
-        (Pdb) result.entry_id
-        'http://arxiv.org/abs/2401.06563v1'
-        """
-
 
       
         print("Time = ", update_time ,
@@ -98,16 +86,6 @@ def get_daily_papers(topic,query="SNN", max_results=2):
 
         try:
             r = requests.get(code_url).json()
-            # source code link
-            # if "official" in r and r["official"]:
-            #     cnt += 1
-            #     repo_url = r["official"]["url"]
-            #     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|\n"
-            #     content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
-
-            # else:
-            #     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|\n"
-            #     content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url})"
 
             """
             Edited by S.Choi - We don't need content_to_web (not used) + Comments
@@ -117,24 +95,16 @@ def get_daily_papers(topic,query="SNN", max_results=2):
                 repo_url = r["official"]["url"]
 
                 if proceeding != None:
-                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|**{proceeding}\n"
+                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|**{proceeding}**|\n"
                     # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
                 else:
-                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|\n"
+                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|null|\n"
                     # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
             else:
                 if proceeding != None:
-                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|**{proceeding}**\n"
+                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|**{proceeding}**|\n"
                 else:
-                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|\n"
-                # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url})"
-
-            # # TODO: select useful comments
-            # comments = None
-            # if comments != None:
-            #     content_to_web[paper_key] = content_to_web[paper_key] + f", {comments}\n"
-            # else:
-            #     content_to_web[paper_key] = content_to_web[paper_key] + f"\n"
+                    content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|null|\n"
 
         except Exception as e:
             print(f"exception: {e} with id: {paper_key}")
@@ -194,36 +164,12 @@ def json_to_md(filename,md_filename,
 
     # write data into README.md
     with open(md_filename,"a+") as f:
-
-        ################ we don't have to care about this #################
-        if (use_title == True) and (to_web == True):
-            f.write("---\n" + "layout: default\n" + "---\n\n")
-        
-        if show_badge == True:
-            f.write(f"[![Contributors][contributors-shield]][contributors-url]\n")
-            f.write(f"[![Forks][forks-shield]][forks-url]\n")
-            f.write(f"[![Stargazers][stars-shield]][stars-url]\n")
-            f.write(f"[![Issues][issues-shield]][issues-url]\n\n")    
-        ################ we don't have to care about this #################
                 
         if use_title == True:
             f.write("## Updated on " + DateNow + "\n\n")
         else:
             f.write("> Updated on " + DateNow + "\n\n")
         
-        #Add: table of contents
-        if use_tc == True:
-            f.write("<details>\n")
-            f.write("  <summary>Table of Contents</summary>\n")
-            f.write("  <ol>\n")
-            for keyword in data.keys():
-                day_content = data[keyword]
-                if not day_content:
-                    continue
-                kw = keyword.replace(' ','-')      
-                f.write(f"    <li><a href=#{kw}>{keyword}</a></li>\n")
-            f.write("  </ol>\n")
-            f.write("</details>\n\n")
         
         for keyword in data.keys():
             day_content = data[keyword]
@@ -242,7 +188,7 @@ def json_to_md(filename,md_filename,
             """
 
             proceedings_dict = {
-                "nips": [],
+                "neurips": [],
                 "eccv": [],
                 "cvpr": [],
                 "iccv": [],
@@ -254,57 +200,41 @@ def json_to_md(filename,md_filename,
             }
         
             for _,v in day_content.items():
-                # if v is not None:
-                    # f.write(v)
 
                 """
                 Edited by S.Choi
                 """
                 proceedings = v.split("|")[-2]
 
-                for key, array in proceedings_dict.items():
-                    if key in proceedings:
-                        array.append(v)
-                        break
+                if proceedings != "null":
+                    for key, array in proceedings_dict.items():
+                            if key in proceedings:
+                                    array.append(v)
+                                    break
                     
             # go to the first line?
 
             for key, array in proceedings_dict.items():
                 
-                """
-                Edited By S.Choi
-                """
                 f.write(f"### {key.upper()}\n")
                 f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
                 for item in array:
                     f.write(item)
 
-            # f.write("|Publish Date|Title|Authors|PDF|Code|\n" + "|---|---|---|---|---|\n")
-            """
-            Edited By S.Choi
-            """
+            f.write(f"\n")
+            
+            f.write(f"### Full Papers\n")
             f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
 
             for _,v in day_content.items():
                 if v is not None:
                     f.write(v)
 
-            f.write(f"\n")
             
             #Add: back to top
             top_info = f"#Updated on {DateNow}"
             top_info = top_info.replace(' ','-').replace('.','')
             f.write(f"<p align=right>(<a href={top_info}>back to top</a>)</p>\n\n")
-        
-        if show_badge == True:
-            f.write(f"[contributors-shield]: https://img.shields.io/github/contributors/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge\n")
-            f.write(f"[contributors-url]: https://github.com/SpikingChen/snn-arxiv-daily/graphs/contributors\n")
-            f.write(f"[forks-shield]: https://img.shields.io/github/forks/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge\n")
-            f.write(f"[forks-url]: https://github.com/SpikingChen/snn-arxiv-daily/network/members\n")
-            f.write(f"[stars-shield]: https://img.shields.io/github/stars/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge\n")
-            f.write(f"[stars-url]: https://github.com/SpikingChen/snn-arxiv-daily/stargazers\n")
-            f.write(f"[issues-shield]: https://img.shields.io/github/issues/SpikingChen/snn-arxiv-daily.svg?style=for-the-badge\n")
-            f.write(f"[issues-url]: https://github.com/SpikingChen/snn-arxiv-daily/issues\n\n")
                 
     print("finished")        
 
@@ -323,7 +253,7 @@ if __name__ == "__main__":
         # topic = keyword.replace("\"","")
         print("Keyword: " + topic)
 
-        data,data_web = get_daily_papers(topic, query = keyword, max_results = 20)
+        data,data_web = get_daily_papers(topic, query = keyword, max_results = 10)
         data_collector.append(data)
         data_collector_web.append(data_web)
 
