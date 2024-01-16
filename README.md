@@ -1,4 +1,4 @@
-## Updated on 2024.01.15
+## Updated on 2024.01.16
 
 <details>
   <summary>Table of Contents</summary>
@@ -28,7 +28,7 @@
 |**2024-01-01**|**Learn to integrate parts for whole through correlated neural variability**|Zhichao Zhu et.al.|[2401.00746v1](http://arxiv.org/abs/2401.00746v1)|**[link](https://github.com/brainsoupfactory/moment-neural-network)**|
 |**2023-12-31**|**Analysis of biologically plausible neuron models for regression with spiking neural networks**|Mario De Florio et.al.|[2401.00369v1](http://arxiv.org/abs/2401.00369v1)|null|
 |**2023-12-29**|**Darwin3: A large-scale neuromorphic chip with a Novel ISA and On-Chip Learning**|De Ma et.al.|[2312.17582v1](http://arxiv.org/abs/2312.17582v1)|null|
-|**2023-12-28**|**SparseProp: Efficient Event-Based Simulation and Training of Sparse Recurrent Spiking Neural Networks**|Rainer Engelken et.al.|[2312.17216v1](http://arxiv.org/abs/2312.17216v1)|**[link](https://github.com/rainerengelken/sparseprop)**|
+|**2023-12-28**|**SparseProp: Efficient Event-Based Simulation and Training of Sparse Recurrent Spiking Neural Networks**|Rainer Engelken et.al.|[2312.17216v1](http://arxiv.org/abs/2312.17216v1)|**[link](https://github.com/rainerengelken/sparseprop)**|**neurips-2023-11
 |**2023-12-26**|**Event-based Shape from Polarization with Spiking Neural Networks**|Peng Kang et.al.|[2312.16071v1](http://arxiv.org/abs/2312.16071v1)|null|
 |**2024-01-05**|**Astrocyte Regulated Neuromorphic Central Pattern Generator Control of Legged Robotic Locomotion**|Zhuangyu Han et.al.|[2312.15805v2](http://arxiv.org/abs/2312.15805v2)|null|
 |**2023-12-11**|**Neuromorphic Co-Design as a Game**|Craig M. Vineyard et.al.|[2312.14954v1](http://arxiv.org/abs/2312.14954v1)|null|
@@ -613,11 +613,33 @@
 |**2022-04-12**|**Rate Coding or Direct Coding: Which One is Better for Accurate, Robust, and Energy-efficient Spiking Neural Networks?**|Youngeun Kim et.al.|[2202.03133v2](http://arxiv.org/abs/2202.03133v2)|**[link](https://github.com/intelligent-computing-lab-yale/rate-vs-direct)**|
 |**2022-04-10**|**Energy-Efficient High-Accuracy Spiking Neural Network Inference Using Time-Domain Neurons**|Joonghyun Song et.al.|[2202.02015v2](http://arxiv.org/abs/2202.02015v2)|null|
 |**2022-02-03**|**Optimized Potential Initialization for Low-latency Spiking Neural Networks**|Tong Bu et.al.|[2202.01440v1](http://arxiv.org/abs/2202.01440v1)|null|
-### NeurIPS
+### NIPS
 |Publish Date|Title|Authors|PDF|Code|Conference
 |---|---|---|---|---|---|
-|**2024-01-08**|**Enhancing Adaptive History Reserving by Spiking Convolutional Block Attention Module in Recurrent Neural Networks**|Qi Xu et.al.|[2401.03719v1](http://arxiv.org/abs/2401.03719v1)|null|**neurips-2023-11**
-|**2023-12-01**|**Trial matching: capturing variability with data-constrained spiking neural networks**|Christos Sourmpis et.al.|[2306.03603v2](http://arxiv.org/abs/2306.03603v2)|**[link](https://github.com/epfl-lcn/pub-sourmpis2023-neurips)**|
+### ECCV
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### CVPR
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### ICCV
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### ICLR
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### AAAI
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### ICML
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### PMLR
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### IJCAI
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
 
-<p align=right>(<a href=#Updated-on-20240115>back to top</a>)</p>
+<p align=right>(<a href=#Updated-on-20240116>back to top</a>)</p>
 

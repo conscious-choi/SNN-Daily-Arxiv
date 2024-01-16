@@ -60,7 +60,7 @@ Papers(count=1, next_page=None, previous_page=None, results=[Paper(id='lottery-t
 client = PapersWithCodeClient()
 
 def proceeder(title):
-    paper = client.paper_list(title)
+    paper = client.paper_list(title) # paper_get?
     if paper.count != 0:
         pwc = paper.results[0]
         if pwc.proceeding != None:

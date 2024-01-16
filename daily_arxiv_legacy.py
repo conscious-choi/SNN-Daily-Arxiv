@@ -119,12 +119,14 @@ def get_daily_papers(topic,query="SNN", max_results=2):
                 if proceeding != None:
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|**{proceeding}\n"
                     # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
+                    import pdb; pdb.set_trace();
                 else:
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|**[link]({repo_url})**|\n"
                     # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url}), Code: **[{repo_url}]({repo_url})**"
             else:
                 if proceeding != None:
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|**{proceeding}**\n"
+                    import pdb; pdb.set_trace();
                 else:
                     content[paper_key] = f"|**{update_time}**|**{paper_title}**|{paper_first_author} et.al.|[{paper_id}]({paper_url})|null|\n"
                 # content_to_web[paper_key] = f"- {update_time}, **{paper_title}**, {paper_first_author} et.al., Paper: [{paper_url}]({paper_url})"
@@ -249,44 +251,32 @@ def json_to_md(filename,md_filename,
             """
             Edited by S.Choi
             """
-
-            proceedings_dict = {
-                "nips": [],
-                "eccv": [],
-                "cvpr": [],
-                "iccv": [],
-                "iclr": [],
-                "aaai": [],
-                "icml": [],
-                "pmlr": [],
-                "ijcai": []
-            }
+            nips = []
         
             for _,v in day_content.items():
                 if v is not None:
                     f.write(v)
-
                 """
                 Edited by S.Choi
                 """
-                proceedings = v.split("|")[-1]
+                if "neurips" in v:
+                    nips.append(v)
 
-                for key, array in proceedings_dict.items():
-                    if key in proceedings:
-                        array.append(v)
-                        break
-                    
-            # go to the first line?
+            if use_title == True :
+                if to_web == False: # default false
+                    # f.write("|Publish Date|Title|Authors|PDF|Code|\n" + "|---|---|---|---|---|\n")
+                    """
+                    Edited By S.Choi
+                    """
+                    f.write("### NeurIPS\n")
+                    f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
+                else:
+                    f.write("| Publish Date | Title | Authors | PDF | Code |\n")
+                    f.write("|:---------|:-----------------------|:---------|:------|:------|\n")
 
-            for key, array in proceedings_dict.items():
-                
-                """
-                Edited By S.Choi
-                """
-                f.write(f"### {key.upper()}\n")
-                f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
-                for item in array:
-                    f.write(item)
+            for v in nips:
+                if v is not None:
+                    f.write(v)
 
             f.write(f"\n")
             
@@ -322,7 +312,7 @@ if __name__ == "__main__":
         # topic = keyword.replace("\"","")
         print("Keyword: " + topic)
 
-        data,data_web = get_daily_papers(topic, query = keyword, max_results = 20)
+        data,data_web = get_daily_papers(topic, query = keyword, max_results = 10)
         data_collector.append(data)
         data_collector_web.append(data_web)
 
