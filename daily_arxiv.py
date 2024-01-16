@@ -232,16 +232,7 @@ def json_to_md(filename,md_filename,
             # the head of each part
             f.write(f"## {keyword}\n\n")
 
-            if use_title == True :
-                if to_web == False: # default false
-                    # f.write("|Publish Date|Title|Authors|PDF|Code|\n" + "|---|---|---|---|---|\n")
-                    """
-                    Edited By S.Choi
-                    """
-                    f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
-                else:
-                    f.write("| Publish Date | Title | Authors | PDF | Code |\n")
-                    f.write("|:---------|:-----------------------|:---------|:------|:------|\n")
+           
 
             # sort papers by date
             day_content = sort_papers(day_content)
@@ -263,13 +254,13 @@ def json_to_md(filename,md_filename,
             }
         
             for _,v in day_content.items():
-                if v is not None:
-                    f.write(v)
+                # if v is not None:
+                    # f.write(v)
 
                 """
                 Edited by S.Choi
                 """
-                proceedings = v.split("|")[-1]
+                proceedings = v.split("|")[-2]
 
                 for key, array in proceedings_dict.items():
                     if key in proceedings:
@@ -287,6 +278,16 @@ def json_to_md(filename,md_filename,
                 f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
                 for item in array:
                     f.write(item)
+
+            # f.write("|Publish Date|Title|Authors|PDF|Code|\n" + "|---|---|---|---|---|\n")
+            """
+            Edited By S.Choi
+            """
+            f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
+
+            for _,v in day_content.items():
+                if v is not None:
+                    f.write(v)
 
             f.write(f"\n")
             

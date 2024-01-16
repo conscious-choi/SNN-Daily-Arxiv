@@ -9,6 +9,33 @@
 
 ## Spiking Neural Network
 
+### NIPS
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### ECCV
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### CVPR
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### ICCV
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### ICLR
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### AAAI
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### ICML
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### PMLR
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
+### IJCAI
+|Publish Date|Title|Authors|PDF|Code|Conference
+|---|---|---|---|---|---|
 |Publish Date|Title|Authors|PDF|Code|Conference
 |---|---|---|---|---|---|
 |**2024-01-12**|**Resource-Efficient Gesture Recognition using Low-Resolution Thermal Camera via Spiking Neural Networks and Sparse Segmentation**|Ali Safa et.al.|[2401.06563v1](http://arxiv.org/abs/2401.06563v1)|null|
@@ -613,33 +640,6 @@
 |**2022-04-12**|**Rate Coding or Direct Coding: Which One is Better for Accurate, Robust, and Energy-efficient Spiking Neural Networks?**|Youngeun Kim et.al.|[2202.03133v2](http://arxiv.org/abs/2202.03133v2)|**[link](https://github.com/intelligent-computing-lab-yale/rate-vs-direct)**|
 |**2022-04-10**|**Energy-Efficient High-Accuracy Spiking Neural Network Inference Using Time-Domain Neurons**|Joonghyun Song et.al.|[2202.02015v2](http://arxiv.org/abs/2202.02015v2)|null|
 |**2022-02-03**|**Optimized Potential Initialization for Low-latency Spiking Neural Networks**|Tong Bu et.al.|[2202.01440v1](http://arxiv.org/abs/2202.01440v1)|null|
-### NIPS
-|Publish Date|Title|Authors|PDF|Code|Conference
-|---|---|---|---|---|---|
-### ECCV
-|Publish Date|Title|Authors|PDF|Code|Conference
-|---|---|---|---|---|---|
-### CVPR
-|Publish Date|Title|Authors|PDF|Code|Conference
-|---|---|---|---|---|---|
-### ICCV
-|Publish Date|Title|Authors|PDF|Code|Conference
-|---|---|---|---|---|---|
-### ICLR
-|Publish Date|Title|Authors|PDF|Code|Conference
-|---|---|---|---|---|---|
-### AAAI
-|Publish Date|Title|Authors|PDF|Code|Conference
-|---|---|---|---|---|---|
-### ICML
-|Publish Date|Title|Authors|PDF|Code|Conference
-|---|---|---|---|---|---|
-### PMLR
-|Publish Date|Title|Authors|PDF|Code|Conference
-|---|---|---|---|---|---|
-### IJCAI
-|Publish Date|Title|Authors|PDF|Code|Conference
-|---|---|---|---|---|---|
 
 <p align=right>(<a href=#Updated-on-20240116>back to top</a>)</p>
 
