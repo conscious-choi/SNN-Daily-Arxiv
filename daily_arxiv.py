@@ -29,6 +29,9 @@ def conference_name_changer(input):
 
     if conference == "neurips":
         conference = "NeurIPS"
+    else:
+        conference = conference.upper()
+        
     conference = conference + " " + year
     return conference
 
