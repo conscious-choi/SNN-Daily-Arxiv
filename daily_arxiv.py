@@ -15,6 +15,7 @@ def get_authors(authors, first_author = False):
         output = authors[0]
     return output
 
+# key has year information. e.g) '2209.00413' '2312.14954'
 def sort_papers(papers):
     output = dict()
     keys = list(papers.keys())
@@ -174,53 +175,53 @@ def json_to_md(filename,md_filename,
         
         
         for keyword in data.keys():
-            day_content = data[keyword]
-            if not day_content:
+            full_lists = data[keyword]
+            if not full_lists:
                 continue
             # the head of each part
             f.write(f"## {keyword}\n\n")
 
             # sort papers by date
-            day_content = sort_papers(day_content)
+            full_lists = sort_papers(full_lists)
 
             proceedings_dict = {
-                "NeurIPS": [],
-                "ECCV": [],
-                "CVPR": [],
-                "ICCV": [],
-                "ICLR": [],
-                "AAAI": [],
-                "ICML": [],
-                "PMLR": [],
-                "IJCAI": []
+                "NeurIPS": {},
+                "ECCV": {},
+                "CVPR": {},
+                "ICCV": {},
+                "ICLR": {},
+                "AAAI": {},
+                "ICML": {},
+                "PMLR": {},
+                "IJCAI": {}
             }
         
-            for _,v in day_content.items():
+            for k, v in full_lists.items():
 
                 proceedings = v.split("|")[-2]
 
                 if proceedings != "null":
-                    for key, array in proceedings_dict.items():
+                    for key, dict in proceedings_dict.items():
                             if key in proceedings:
-                                    array.append(v)
+                                    dict[k] = v
                                     break
                     
             # go to the first line?
 
-            for key, array in proceedings_dict.items():
+            for key, conferences in proceedings_dict.items():
                 
                 f.write(f"### {key}\n")
                     
                 f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
-                for item in array:
-                    f.write(item)
+                for k, v in sort_papers(conferences).items():
+                    f.write(v)
 
             f.write(f"\n")
             
             f.write(f"### Full Papers\n")
             f.write("|Publish Date|Title|Authors|PDF|Code|Conference\n" + "|---|---|---|---|---|---|\n")
 
-            for _,v in day_content.items():
+            for _,v in full_lists.items():
                 if v is not None:
                     f.write(v)
 
@@ -246,7 +247,7 @@ if __name__ == "__main__":
         # topic = keyword.replace("\"","")
         print("Keyword: " + topic)
 
-        data = get_daily_papers(topic, query = keyword, max_results = 500)
+        data = get_daily_papers(topic, query = keyword, max_results = 2000)
         data_collector.append(data)
 
         print("\n")
