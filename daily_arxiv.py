@@ -246,7 +246,7 @@ if __name__ == "__main__":
         # topic = keyword.replace("\"","")
         print("Keyword: " + topic)
 
-        data = get_daily_papers(topic, query = keyword, max_results = 100)
+        data = get_daily_papers(topic, query = keyword, max_results = 500)
         data_collector.append(data)
 
         print("\n")
